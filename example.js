@@ -32,11 +32,15 @@ const { empresa } = require("./src/empresa.js");
 const { fisica } = require("./src/fisica.js");
 
 const client = new Client({
-    restartOnAuthFail: true,
-    authStrategy: new LocalAuth(),
-    // proxyAuthentication: { username: 'username', password: 'password' },
+    // restartOnAuthFail: true,
+    // authStrategy: new LocalAuth({
+    //     clientId: this.client_id,
+    // }),
+    webVersionCache: {
+        type: 'remote',
+        remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html',
+    },
     puppeteer: {
-        // args: ['--proxy-server=proxy-server-that-requires-authentication.example.com'],
         headless: true,
         args: ['--no-sandbox',
             '--disable-setuid-sandbox',
@@ -47,7 +51,7 @@ const client = new Client({
             '--single-process', // <- this one doesn't works in Windows
             '--disable-gpu'
         ],
-    }
+    },
 });
 
 const port = process.env.PORT || 7005;
@@ -451,7 +455,7 @@ client.on('group_leave', (notification) => {
 
 client.on('group_update', (notification) => {
     // Group picture, subject or description has been updated.
-   
+
 });
 
 client.on('change_state', state => {

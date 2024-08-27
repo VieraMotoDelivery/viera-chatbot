@@ -68,14 +68,7 @@ Digite apenas o numero da opção.
 
 O chatbot foi desativado temporariamente. Por favor, não se esqueça de reativá-lo após o término da conversa, para que o cliente possa continuar a receber assistência automatizada.`
             );
-            // VIERA
-            client.sendMessage("5514996977366@c.us", `${telefone}`);
-            client.sendMessage(
-                "5514996977366@c.us",
-                `Atenção! Temos um cliente aguardando para falar com um de nossos representantes.
-
-O chatbot foi desativado temporariamente. Por favor, não se esqueça de reativá-lo após o término da conversa, para que o cliente possa continuar a receber assistência automatizada.`
-            );
+            
 
             Requests.updateEtapa(msg.from, { ativado: false, etapa: "des" });
         } else if (
@@ -159,10 +152,7 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
         if (msg.body == "7") {
             digiteoenderecodecoleta(msg.from, client);
 
-            client.sendMessage(
-                "5514996977366@c.us",
-                `Atenção, o cliente escolheu a opção ÁREAS RURAIS. Passe o valor da corrida para ele.`
-            );
+          
 
             client.sendMessage(
                 "5514988088702@c.us",
@@ -476,20 +466,7 @@ Escolha por favor uma das opções
                 `Atenção! Temos um cliente aguardando para consultar o valor da entrega.`
             );
 
-            // VIERA
-            client.sendMessage(
-                "5514996977366@c.us",
-                `Você deseja finalizar o pedido de entrega ?
-
-Escolha por favor uma das opções
-
-*1* - Sim, desejo continuar
-*2* - Não.`
-            );
-            client.sendMessage(
-                "5514996977366@c.us",
-                `Atenção! Temos um cliente aguardando para consultar o valor da entrega.`
-            );
+           
         } else if (
             !address &&
             message !== "voltar" &&
@@ -583,15 +560,6 @@ Numero telefone do cliente: ${msg.from}`
         );
 
         client.sendMessage("5514988088702@c.us", msg.body);
-
-        // VIERA
-        client.sendMessage(
-            "5514996977366@c.us",
-            `Comprovante de pagamento foi enviado!
-Numero telefone do cliente: ${msg.from}`
-        );
-
-        client.sendMessage("5514996977366@c.us", msg.body);
     }
 }
 

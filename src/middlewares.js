@@ -653,10 +653,10 @@ Lembrando que coletas são de 0 a 15 minutos em dias normais.
 
             client.sendMessage(
                 from,
-                `CNPJ
-SOS Entregas
+                `CNPJ 54.468.915/0001-55
 
-Banco Cora`
+BANCO CORA
+Luiz Henrique Vieira`
             );
 
             client.sendMessage(from, `32418164000120`);

@@ -17,7 +17,7 @@ async function fisica(msg, etapaRetrieve, client) {
         client.sendMessage(
             msg.from,
             `Olá! 😃
-Eu sou o Assistente Virtual da *SOS Entregas* e estou aqui para te ajudar. Oque você deseja nesse momento ?
+Eu sou o Assistente Virtual do *Viera Entregas* e estou aqui para te ajudar. Oque você deseja nesse momento ?
 
 Digite apenas o numero da opção.
 ⬇️

@@ -133,7 +133,7 @@ Pagamento: ${dados.formadepagamento ? dados.formadepagamento : "Sem registro"}`;
 
     static async deletarEntregasEmpresa() {
         try {
-            await fetch("https://database-sos.up.railway.app/webhook", {
+            await fetch("https://db-viera.up.railway.app/webhook", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

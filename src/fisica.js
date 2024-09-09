@@ -60,14 +60,14 @@ Digite apenas o numero da opção.
                 msg.from,
                 `Agradecemos por entrar em contato conosco. Pedimos que aguarde um minuto, pois um de nossos representantes estará prontamente disponível para atendê-lo. `
             );
-            // CRIS
-            client.sendMessage("5514988088702@c.us", `${telefone}`);
-            client.sendMessage(
-                "5514988088702@c.us",
-                `Atenção! Temos um cliente aguardando para falar com um de nossos representantes.
+//             CRIS
+//             client.sendMessage("5514988088702@c.us", `${telefone}`);
+//             client.sendMessage(
+//                "5514988088702@c.us",
+//                `Atenção! Temos um cliente aguardando para falar com um de nossos representantes.
 
-O chatbot foi desativado temporariamente. Por favor, não se esqueça de reativá-lo após o término da conversa, para que o cliente possa continuar a receber assistência automatizada.`
-            );
+// O chatbot foi desativado temporariamente. Por favor, não se esqueça de reativá-lo após o término da conversa, para que o cliente possa continuar a receber assistência automatizada.`
+//            );
             
 
             Requests.updateEtapa(msg.from, { ativado: false, etapa: "des" });
@@ -154,10 +154,10 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
 
           
 
-            client.sendMessage(
-                "5514988088702@c.us",
-                `Atenção, o cliente escolheu a opção ÁREAS RURAIS. Passe o valor da corrida para ele.`
-            );
+            // client.sendMessage(
+            //     "5514988088702@c.us",
+            //     `Atenção, o cliente escolheu a opção ÁREAS RURAIS. Passe o valor da corrida para ele.`
+            // );
 
             await Requests.updateEtapa(msg.from, { etapa: "40" });
             Requests.createEntregaEmpresa({
@@ -452,19 +452,19 @@ buscamos essa informação em nosso sistema. Estamos empenhados em fornecer-lhe 
             );
 
             // CRIS
-            client.sendMessage(
-                "5514988088702@c.us",
-                `Você deseja finalizar o pedido de entrega ?
+//             client.sendMessage(
+//                 "5514988088702@c.us",
+//                 `Você deseja finalizar o pedido de entrega ?
 
-Escolha por favor uma das opções
+// Escolha por favor uma das opções
 
-*1* - Sim, desejo continuar
-*2* - Não.`
-            );
-            client.sendMessage(
-                "5514988088702@c.us",
-                `Atenção! Temos um cliente aguardando para consultar o valor da entrega.`
-            );
+// *1* - Sim, desejo continuar
+// *2* - Não.`
+//             );
+            // client.sendMessage(
+            //     "5514988088702@c.us",
+            //     `Atenção! Temos um cliente aguardando para consultar o valor da entrega.`
+            // );
 
            
         } else if (
@@ -553,13 +553,13 @@ Ficamos satisfeitos em poder atendê-lo(a) e tornar essa entrega possível. 😃
         Requests.updateEtapa(msg.from, { etapa: "a" });
 
         // CRIS
-        client.sendMessage(
-            "5514988088702@c.us",
-            `Comprovante de pagamento foi enviado!
-Numero telefone do cliente: ${msg.from}`
-        );
+//         client.sendMessage(
+//             "5514988088702@c.us",
+//             `Comprovante de pagamento foi enviado!
+// Numero telefone do cliente: ${msg.from}`
+//         );
 
-        client.sendMessage("5514988088702@c.us", msg.body);
+//         client.sendMessage("5514988088702@c.us", msg.body);
     }
 }
 

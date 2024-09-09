@@ -241,11 +241,7 @@ async function ativarchatbot(msg, client) {
     let telefone = message.split("/");
 
     if (ativar == "ativar") {
-        if (
-            msg.from == "5514996977366@c.us" ||
-            msg.from == "5514988088702@c.us" ||
-            msg.from == "5514998536591@c.us"
-        ) {
+      
             try {
                 await Requests.updateEtapa(`55${telefone[1]}@c.us`, {
                     ativado: true,
@@ -258,7 +254,7 @@ async function ativarchatbot(msg, client) {
                     "Não existe esse numero no banco de dados. Não se esqueça do ddd."
                 );
             }
-        }
+        
     }
 }
 
@@ -269,11 +265,7 @@ async function desativarchatbot(msg, client) {
     let telefone = message.split("/");
 
     if (desativar == "desativar") {
-        if (
-            msg.from == "5514996977366@c.us" ||
-            msg.from == "5514988088702@c.us" ||
-            msg.from == "5514998536591@c.us"
-        ) {
+      
             try {
                 await Requests.updateEtapa(`55${telefone[1]}@c.us`, {
                     ativado: false,
@@ -286,7 +278,7 @@ async function desativarchatbot(msg, client) {
                     "Não existe esse numero no banco de dados. Não se esqueça do ddd."
                 );
             }
-        }
+        
     }
 }
 

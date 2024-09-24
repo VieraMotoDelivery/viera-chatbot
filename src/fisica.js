@@ -188,15 +188,15 @@ Vamos tentar novamente. Qual se enquadra no seu ponto de coleta com o lugar da e
 
 Por favor, escolha uma das opções ⬇️
 
-*1* - Barra x Barra 8,00
-*2* - Barra x Igaraçu 9,00
-*3* - Cohab da Barra pra cima x Igaraçu 12,00
+1 - Barra x Barra 9,00
+2 - Barra x Igaraçu 10,00
+3 - Cohab da Barra pra cima x Igaraçu 14,00
 
-*4* - Igaraçu x Igaraçu 7,00
-*5* - Igaraçu x Barra 9,00
-*6* - Igaraçu x Cohab da Barra pra cima 12,00
+4 - Igaraçu x Igaraçu 8,00
+5 - Igaraçu x Barra 10,00
+6 - Igaraçu x Cohab da Barra pra cima 14,00
 
-*7* - Áreas Rurais, chácaras e condomínio Solicitar Consulta`
+7 - Áreas Rurais, chácaras e condomínio Solicitar Consulta`
             );
         }
     }

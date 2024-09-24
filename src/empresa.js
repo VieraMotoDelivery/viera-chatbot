@@ -185,7 +185,7 @@ Por favor, escolha uma das opções ⬇️
                             entregaidfood: responseFood.uid,
                         };
 
-                        fetch("https://database-sos.up.railway.app/webhook/create", {
+                        fetch("https://db-viera.up.railway.app/webhook/create", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",

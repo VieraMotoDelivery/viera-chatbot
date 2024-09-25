@@ -100,7 +100,7 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
             Requests.createEntregaEmpresa({
                 telefone: msg.from,
                 obs: "Barra x Barra",
-                codigo: "300",
+                codigo: "500",
             });
             Requests.updateEtapa(msg.from, { etapa: "d" });
         }
@@ -109,7 +109,7 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
             Requests.createEntregaEmpresa({
                 telefone: msg.from,
                 obs: "Barra x Igaraçu",
-                codigo: "300",
+                codigo: "500",
             });
             Requests.updateEtapa(msg.from, { etapa: "d" });
         }
@@ -118,7 +118,7 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
             Requests.createEntregaEmpresa({
                 telefone: msg.from,
                 obs: "Cohab da Barra pra cima x Igaraçu",
-                codigo: "300",
+                codigo: "500",
             });
             Requests.updateEtapa(msg.from, { etapa: "d" });
         }
@@ -127,7 +127,7 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
             Requests.createEntregaEmpresa({
                 telefone: msg.from,
                 obs: "Igaraçu x Igaraçu",
-                codigo: "300",
+                codigo: "500",
             });
             Requests.updateEtapa(msg.from, { etapa: "d" });
         }
@@ -136,7 +136,7 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
             Requests.createEntregaEmpresa({
                 telefone: msg.from,
                 obs: "Igaraçu x Barra",
-                codigo: "300",
+                codigo: "500",
             });
             Requests.updateEtapa(msg.from, { etapa: "d" });
         }
@@ -145,7 +145,7 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
             Requests.createEntregaEmpresa({
                 telefone: msg.from,
                 obs: "Igaraçu x Cohab da Barra pra cima",
-                codigo: "300",
+                codigo: "500",
             });
             Requests.updateEtapa(msg.from, { etapa: "d" });
         }
@@ -163,7 +163,7 @@ Por favor, escolha uma das opções, digite apenas o numero. ⬇️
             Requests.createEntregaEmpresa({
                 telefone: msg.from,
                 obs: "Áreas Rurais, chácaras e condomínio",
-                codigo: "300",
+                codigo: "500",
             });
 
 

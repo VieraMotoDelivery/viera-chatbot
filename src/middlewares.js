@@ -580,7 +580,7 @@ async function obrigadoseupedidofoifeitocomsucesso(
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "2df6ef011a3346519d0963df3eb16db0",
+                Authorization: "9e6d51a6428245bc8b4bc0a1557d606d",
             },
             body: JSON.stringify(data),
         }
@@ -588,7 +588,7 @@ async function obrigadoseupedidofoifeitocomsucesso(
         .then((res) => res.json())
         .then((res) => res)
         .catch((err) => console.log(err));
-
+    
     if (responseFood.errorCode) {
        
         client.sendMessage(

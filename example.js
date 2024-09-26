@@ -33,9 +33,7 @@ const { fisica } = require("./src/fisica.js");
 
 const client = new Client({
     // restartOnAuthFail: true,
-    // authStrategy: new LocalAuth({
-    //     clientId: this.client_id,
-    // }),
+    authStrategy: new LocalAuth(),
     webVersionCache: {
         type: 'remote',
         remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.3000.0.html',
@@ -158,9 +156,9 @@ client.on("message", async (msg) => {
             ativar != "ativar" &&
             desativar != "desativar"
         ) {
-            if (h >= 10 && h < 23) {
+            if (h >= 9 && h < 23) {
                 empresa(msg, msgNumber, etapaRetrieve, codigotelefone, client);
-            } else if (h < 10) {
+            } else if (h < 9) {
                 client.sendMessage(
                     msg.from,
                     `Olá! 😃
@@ -170,7 +168,7 @@ Alguma dúvida ou assistência, recomendamos que entre em contato novamente mais
 
 Obrigado pela compreensão!`
                 );
-            } else if (h > 10 && h >= 23) {
+            } else if (h > 9 && h >= 23) {
                 client.sendMessage(
                     msg.from,
                     `Pedimos desculpas pelo inconveniente, pois nosso horário de *atendimento* é das 🕥 10h30 até às 23h00 🕙.
@@ -181,7 +179,7 @@ Agradecemos pela compreensão.`
                 );
             }
         } else if (!buscarseexistetelefonenobanco && !listDelivery) {
-            if (h >= 10 && h < 23) {
+            if (h >= 9 && h < 23) {
                 let registrarCode = msg.body.includes("/registrar/.");
                 let registrar = msg.body.includes("/registrar");
                 if (!registrarCode && !registrar) {
@@ -192,7 +190,7 @@ Agradecemos pela compreensão.`
                         buscarseexistetelefonenobanco
                     );
                 }
-            } else if (h < 10) {
+            } else if (h < 9) {
                 client.sendMessage(
                     msg.from,
                     `Olá! 😃
@@ -202,7 +200,7 @@ Alguma dúvida ou assistência, recomendamos que entre em contato novamente mais
     
 Obrigado pela compreensão!`
                 );
-            } else if (h > 10 && h >= 23) {
+            } else if (h > 9 && h >= 23) {
                 client.sendMessage(
                     msg.from,
                     `Olá! 😃

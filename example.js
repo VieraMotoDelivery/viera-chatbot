@@ -130,8 +130,6 @@ client.on('ready', async () => {
 cronJob();
 client.on("message", async (msg) => {
 
-    console.log(`${msg.body} - ${msg.from}`);
-
     let msgNumber = await checkingNumbers(msg);
     let etapaRetrieve = await Requests.retrieveEtapa(msg);
     let codigotelefone = codigoetelefone(msg.from, msgNumber);
@@ -156,9 +154,9 @@ client.on("message", async (msg) => {
             ativar != "ativar" &&
             desativar != "desativar"
         ) {
-            if (h >= 9 && h < 23) {
+            if (h >= 10 && h < 23) {
                 empresa(msg, msgNumber, etapaRetrieve, codigotelefone, client);
-            } else if (h < 9) {
+            } else if (h < 10) {
                 client.sendMessage(
                     msg.from,
                     `Olá! 😃
@@ -168,7 +166,7 @@ Alguma dúvida ou assistência, recomendamos que entre em contato novamente mais
 
 Obrigado pela compreensão!`
                 );
-            } else if (h > 9 && h >= 23) {
+            } else if (h > 10 && h >= 23) {
                 client.sendMessage(
                     msg.from,
                     `Pedimos desculpas pelo inconveniente, pois nosso horário de *atendimento* é das 🕥 10h30 até às 23h00 🕙.
@@ -179,7 +177,7 @@ Agradecemos pela compreensão.`
                 );
             }
         } else if (!buscarseexistetelefonenobanco && !listDelivery) {
-            if (h >= 9 && h < 23) {
+            if (h >= 10 && h < 23) {
                 let registrarCode = msg.body.includes("/registrar/.");
                 let registrar = msg.body.includes("/registrar");
                 if (!registrarCode && !registrar) {
@@ -190,7 +188,7 @@ Agradecemos pela compreensão.`
                         buscarseexistetelefonenobanco
                     );
                 }
-            } else if (h < 9) {
+            } else if (h < 10) {
                 client.sendMessage(
                     msg.from,
                     `Olá! 😃
@@ -200,7 +198,7 @@ Alguma dúvida ou assistência, recomendamos que entre em contato novamente mais
     
 Obrigado pela compreensão!`
                 );
-            } else if (h > 9 && h >= 23) {
+            } else if (h > 10 && h >= 23) {
                 client.sendMessage(
                     msg.from,
                     `Olá! 😃
@@ -542,5 +540,5 @@ client.on('group_membership_request', async (notification) => {
 });
 
 client.on('message_reaction', async (reaction) => {
-    console.log('REACTION RECEIVED', reaction);
+   
 });

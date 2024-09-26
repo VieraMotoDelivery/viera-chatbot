@@ -580,7 +580,7 @@ async function obrigadoseupedidofoifeitocomsucesso(
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "9e6d51a6428245bc8b4bc0a1557d606d",
+                Authorization: "d24dfdb02fdb4ed4b0cdb4b68be84471",
             },
             body: JSON.stringify(data),
         }
@@ -645,13 +645,18 @@ Lembrando que coletas são de 0 a 15 minutos em dias normais.
 
             client.sendMessage(
                 from,
-                `CNPJ 54.468.915/0001-55
+                `Chave pix CNPJ 👇🏼
 
 BANCO CORA
 Luiz Henrique Vieira`
             );
 
-            client.sendMessage(from, `32418164000120`);
+
+            client.sendMessage(
+                from,
+                `54.468.915/0001-55`
+            );
+
 
             Requests.updateEtapa(from, { etapa: "compr" });
         }

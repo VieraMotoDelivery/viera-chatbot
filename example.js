@@ -128,7 +128,54 @@ client.on('ready', async () => {
 });
 
 cronJob();
+const messageTracker = new Map();
+const BLOCK_THRESHOLD = 5;
+const TIME_WINDOW = 300000; // 5 minutos
+
+function shouldBlockMessage(phoneNumber, messageContent) {
+    const key = `${phoneNumber}:${messageContent.toLowerCase().trim()}`;
+    const now = Date.now();
+
+    if (!messageTracker.has(key)) {
+        messageTracker.set(key, { count: 1, firstSeen: now });
+        return false;
+    }
+
+    const data = messageTracker.get(key);
+
+    if (now - data.firstSeen > TIME_WINDOW) {
+        messageTracker.set(key, { count: 1, firstSeen: now });
+        return false;
+    }
+
+    data.count++;
+
+    if (data.count >= BLOCK_THRESHOLD) {
+        console.log(`BLOCKED: ${phoneNumber} - Mensagem repetida ${data.count} vezes: "${messageContent}"`);
+        return true;
+    }
+
+    return false;
+}
+
+function cleanupOldEntries() {
+    const now = Date.now();
+    for (const [key, data] of messageTracker.entries()) {
+        if (now - data.firstSeen > TIME_WINDOW) {
+            messageTracker.delete(key);
+        }
+    }
+}
+
+// Limpar entradas antigas a cada 10 minutos
+setInterval(cleanupOldEntries, 600000);
+
 client.on("message", async (msg) => {
+    // ANTI-LOOP: Verificar se deve bloquear esta mensagem
+    if (shouldBlockMessage(msg.from, msg.body)) {
+        console.log(`Mensagem bloqueada de ${msg.from}: "${msg.body}"`);
+        return; // Para o processamento aqui
+    }
 
     let msgNumber = await checkingNumbers(msg);
     let etapaRetrieve = await Requests.retrieveEtapa(msg);
@@ -137,7 +184,7 @@ client.on("message", async (msg) => {
         msg.from
     );
 
-    // ---------------------Funções----------------------------Funções------------------------------------
+    // Resto do código continua normalmente...
     const date = new Date();
     const h = date.getHours();
 
@@ -148,6 +195,7 @@ client.on("message", async (msg) => {
         let desativar = message.slice(0, 9);
         let ativar = message.slice(0, 6);
         let listDelivery = message.includes("entregas/");
+
         if (
             buscarseexistetelefonenobanco &&
             !listDelivery &&
@@ -213,23 +261,14 @@ Agradecemos pela compreensão.`
     }
 
     listarentregasequantidade(msg, client);
-
     listartodosclientescadastrados(msg, client);
-
     buscardadosdecadastradodaempresa(msg, client, msgNumber);
-
     deletarentregas(msg, client);
-
     deletarcliente(msg, client);
-
     ativarchatbot(msg, client);
-
     desativarchatbot(msg, client);
-
     listarQuantidadeDeEntregasDaEmpresa(codigotelefone, msg, client);
-
     excluirnumerocliente(msg, client);
-
 });
 
 const checkRegisteredNumber = async function (number) {
@@ -540,5 +579,5 @@ client.on('group_membership_request', async (notification) => {
 });
 
 client.on('message_reaction', async (reaction) => {
-   
+
 });

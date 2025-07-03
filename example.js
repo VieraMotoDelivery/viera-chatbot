@@ -177,6 +177,7 @@ client.on("message", async (msg) => {
         return; // Para o processamento aqui
     }
 
+    
     let msgNumber = await checkingNumbers(msg);
     let etapaRetrieve = await Requests.retrieveEtapa(msg);
     let codigotelefone = codigoetelefone(msg.from, msgNumber);

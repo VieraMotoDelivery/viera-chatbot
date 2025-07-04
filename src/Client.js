@@ -929,18 +929,52 @@ class Client extends EventEmitter {
             );
         }
 
-        const newMessage = await this.pupPage.evaluate(async (chatId, message, options, sendSeen) => {
-            const chatWid = window.Store.WidFactory.createWid(chatId);
-            const chat = await window.Store.Chat.find(chatWid);
+const newMessage = await this.pupPage.evaluate(async (chatId, message, options, sendSeen) => {
+    const chatWid = window.Store.WidFactory.createWid(chatId);
+    const chat = await window.Store.Chat.find(chatWid);
 
+    if (sendSeen) {
+        await window.WWebJS.sendSeen(chatId);
+    }
 
-            if (sendSeen) {
-                await window.WWebJS.sendSeen(chatId);
-            }
-
-            const msg = await window.WWebJS.sendMessage(chat, message, options, sendSeen);
+    try {
+        const msg = await window.WWebJS.sendMessage(chat, message, options, sendSeen);
+        
+        if (msg && typeof window.WWebJS.getMessageModel === 'function') {
             return window.WWebJS.getMessageModel(msg);
-        }, chatId, content, internalOptions, sendSeen);
+        }
+        
+        if (msg) {
+            return {
+                id: msg.id || { fromMe: true, remote: chatId, id: Date.now().toString() },
+                body: msg.body || message,
+                type: msg.type || 'chat',
+                timestamp: msg.t || Math.floor(Date.now() / 1000),
+                from: msg.from || window.Store.User.getMeUser(),
+                to: msg.to || chatWid._serialized,
+                ack: msg.ack || 1
+            };
+        }
+        
+        return {
+            id: { fromMe: true, remote: chatId, id: Date.now().toString() },
+            body: message,
+            type: 'chat',
+            timestamp: Math.floor(Date.now() / 1000),
+            from: window.Store.User.getMeUser(),
+            to: chatWid._serialized,
+            ack: 1
+        };
+        
+    } catch (error) {
+        console.error('Send message error:', error);
+        return null;
+    }
+}, chatId, content, internalOptions, sendSeen);
+
+if (!newMessage) {
+    throw new Error('Falha ao enviar mensagem - verifique se o chat existe');
+}
 
         return new Message(this, newMessage);
     }

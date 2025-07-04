@@ -32,17 +32,18 @@ const { empresa } = require("./src/empresa.js");
 const { fisica } = require("./src/fisica.js");
 
 const client = new Client({
-    // restartOnAuthFail: true,
     authStrategy: new LocalAuth(),
+    // Remova completamente o webVersionCache
     puppeteer: {
         headless: true,
-        args: ['--no-sandbox',
+        args: [
+            '--no-sandbox',
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
             '--disable-accelerated-2d-canvas',
             '--no-first-run',
             '--no-zygote',
-            '--single-process', // <- this one doesn't works in Windows
+            '--single-process',
             '--disable-gpu'
         ],
     },
@@ -100,7 +101,29 @@ client.on('qr', async (qr) => {
     }
 });
 
-
+async function sendMessageSafely(client, chatId, message, options = {}) {
+    try {
+        const result = await client.sendMessage(chatId, message, options);
+        return result;
+    } catch (error) {
+        console.log(`Erro ao enviar mensagem: ${error.message}`);
+        
+        // Se for o erro de serialize, tenta novamente após delay
+        if (error.message.includes('serialize')) {
+            console.log('Tentando reenviar após erro de serialize...');
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            try {
+                return await client.sendMessage(chatId, message, options);
+            } catch (retryError) {
+                console.log('Falha no reenvio:', retryError.message);
+                return null;
+            }
+        }
+        
+        return null;
+    }
+}
 
 client.on('authenticated', () => {
     console.log('AUTHENTICATED');
